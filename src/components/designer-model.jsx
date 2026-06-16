@@ -5,13 +5,11 @@ import PropTypes from "prop-types";
 import * as THREE from "three";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-import { supabaseUrl } from "@/supabase/supabase";
+import { getAssetUrl } from "@/config/assets";
 
 const DesignerModel = ({ position, scale, rotation, path, showAnimation }) => {
   const ref = useRef();
-  const { scene, animations } = useGLTF(
-    `${supabaseUrl}/${path}`
-  );
+  const { scene, animations } = useGLTF(getAssetUrl(path));
 
   let mixer;
 

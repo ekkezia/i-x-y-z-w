@@ -16,7 +16,7 @@ import DesignerModel from "./designer-model";
 import MODELS_OBJECT from "../config/models";
 import useTimer from "./timer";
 import useBreakpoints from "@/hooks/useBreakpoints";
-import { supabaseUrl } from "@/supabase/supabase";
+import { getAssetUrl } from "@/config/assets";
 
 const Scene = ({ modelKey }) => {
   const { isSmallScreen } = useBreakpoints();
@@ -146,8 +146,6 @@ function Loader() {
   );
 }
 
-const STATIC_PATH = "https://lmgbcuolwhkqoowxnaik.supabase.co/storage/v1/object/public/i-x-y-z-w";
-
 function Frame({
   name,
   video,
@@ -170,7 +168,7 @@ function Frame({
     frameRotationRef.current.rotation.y += 0.005;
   });
 
-  const videoUrl = `${supabaseUrl}/${video}`;
+  const videoUrl = getAssetUrl(video);
   const videoTexture = useVideoTexture(videoUrl);
 
   const MIN_PROGRESS = 20;
